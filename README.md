@@ -1,2 +1,2 @@
 # xtract
-Free open source code to extract performance metrics from CPU performance monitor hardware.
+A free, open-source library for extracting performance data from the ARM embedded trace macrocell.
