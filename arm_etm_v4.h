@@ -37,23 +37,23 @@
 
 // ETM configuration structure (for user abstraction)
 typedef struct {
-    volatile uint32_t IDR;          // 0x000
-    volatile uint32_t CR;           // 0x004
-    volatile uint32_t STATUS;       // 0x008
-    uint32_t RESERVED1[5];
-    volatile uint32_t TRIGEVT;      // 0x020
-    uint32_t RESERVED2[59];
-    volatile uint32_t CTRL;         // 0x100
-    uint32_t RESERVED3[63];
-    volatile uint32_t TRACEIDR;     // 0x200
-    volatile uint32_t CONFIGR;      // 0x204
-    volatile uint32_t EVENTR;       // 0x208
-    volatile uint32_t SYNCFR;       // 0x20C
-    uint32_t RESERVED4[5];
-    volatile uint32_t TSCR;         // 0x220
-    volatile uint32_t SCR;          // 0x224
-    uint32_t RESERVED5[55];
-    volatile uint32_t VIEWDATA;     // 0x300
+    volatile uint32_t idr;          // 0x000
+    volatile uint32_t cr;           // 0x004
+    volatile uint32_t status;       // 0x008
+    uint32_t reserved1[5];
+    volatile uint32_t trigevt;      // 0x020
+    uint32_t reserved2[59];
+    volatile uint32_t ctrl;         // 0x100
+    uint32_t reserved3[63];
+    volatile uint32_t traceidr;     // 0x200
+    volatile uint32_t configr;      // 0x204
+    volatile uint32_t eventr;       // 0x208
+    volatile uint32_t syncfr;       // 0x20C
+    uint32_t reserved4[5];
+    volatile uint32_t tscr;         // 0x220
+    volatile uint32_t scr;          // 0x224
+    uint32_t reserved5[55];
+    volatile uint32_t viewdata;     // 0x300
 } arm_etm_v4_t;
 
 // Macros to access ETM
