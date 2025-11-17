@@ -1,5 +1,4 @@
 CC=arm-none-eabi-gcc
-WARN=-Wall -Wextra -Werror
 INC=-I./include
 SRC=src/xtract.c
 WARNS=-Wall -Wextra -Werror
