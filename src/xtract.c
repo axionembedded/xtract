@@ -26,10 +26,16 @@ SOFTWARE.
 
 #define ETM_ID_REGISTER_PRESENT_MASK (1U << 31)
 
+static uint32_t etm_base_address = 0;
+
 bool xtract_etm_init(uint32_t etm_base_addr)
 {
+    uint32_t ccr;
     id_register_t id;
-    const uint32_t ccr = *((volatile uint32_t *)(etm_base_addr + ETMv3_CCR));
+
+    etm_base_address = etm_base_addr;
+
+    ccr = *((volatile uint32_t *)(etm_base_address + ETMv3_CCR));
 
     if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U){
         return false;
