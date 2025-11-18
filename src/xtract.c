@@ -43,7 +43,6 @@ bool xtract_etm_init(uint32_t etm_base_addr)
     }
 
     ccr = *((volatile uint32_t *)(etm_base_address + ETM_CCR));
-
     if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U)
     {
         return false;
