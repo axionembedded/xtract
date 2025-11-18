@@ -23,3 +23,19 @@ SOFTWARE.
 */
 
 #include "xtract.h"
+
+#define ETM_ID_REGISTER_PRESENT_MASK (1U << 31)
+
+bool xtract_etm_init(uint32_t etm_base_addr)
+{
+    id_register_t id;
+    const uint32_t ccr = *((volatile uint32_t *)(etm_base_addr + ETMv3_CCR));
+
+    if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U){
+        return false;
+    }
+
+    id.value = *((volatile uint32_t *)(etm_base_addr + ETMv3_IDR));
+
+    return (id.etm_major_arch_version == ETM_MAJOR_ARCH_VERSION_3);
+}

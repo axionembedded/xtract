@@ -27,4 +27,6 @@ SOFTWARE.
 
 #include "arm_etm_v3.h"
 
+#define ETM_MAJOR_ARCH_VERSION_3 0x2U
+
 #endif /* _ARM_ETM_H_ */

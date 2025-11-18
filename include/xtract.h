@@ -25,6 +25,11 @@ SOFTWARE.
 #ifndef _XTRACT_H_
 #define _XTRACT_H_
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "arm_etm.h"
+
+bool xtract_etm_init(uint32_t etm_base_addr);
 
 #endif /* _XTRACT_H_ */

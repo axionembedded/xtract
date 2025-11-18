@@ -235,34 +235,24 @@ SOFTWARE.
 #define ETMv3_FFCR_EN               (1U << 0)
 #define ETMv3_FFCR_STOPPED          (1U << 1)
 
-/* ETM v3 Main Registers Structure */
 typedef struct {
-    volatile uint32_t cr;        /* 0x000: Control Register */
-    volatile uint32_t configr;   /* 0x004: Configuration Code Register */
-    uint32_t _reserved1[2];
-    volatile uint32_t sr;        /* 0x010: Status Register */
-    uint32_t _reserved2[3];
-    volatile uint32_t trigevr;   /* 0x020: Trigger Event Register */
-    volatile uint32_t teevr;     /* 0x024: Trace Enable Event Register */
-    volatile uint32_t ctrl2;     /* 0x028: Control Register 2 */
-    uint32_t _reserved3[0x7F - 0x0A];      /* Pad to 0x200 */
-    volatile uint32_t traceidr;  /* 0x200: Trace ID Register */
-    uint32_t _reserved4[0x7B];   /* Pad to 0x300 */
-    volatile uint32_t ffsr;      /* 0x300: Formatter and Flush Status Register */
-    volatile uint32_t ffcr;      /* 0x304: Formatter and Flush Control Register */
-    /* Additional registers can be mapped as needed */
-} etmv3_regs_t;
-
-/* ETM v3 Identification Macros */
-#define ETMv3_ID_MASK               0xFFF
-#define ETMv3_ID_ETM                0x410 /* Value in ETMv3_IDR for ETM */
-
-/* Example usage: (replace ETM_BASE with your ETM peripheral base address)
-    #define ETM_BASE   0xF8801000
-    etmv3_regs_t *etm = (etmv3_regs_t *)ETM_BASE;
-    etm->cr = ETMv3_CR_PROGRAMMING; // Enter programming mode
-*/
-
-/* For full programming, see the ETM v3 Architecture Specification. */
+    union {
+    struct {
+        uint32_t implementation_revision:4;
+        uint32_t etm_minor_arch_version:4;
+        uint32_t etm_major_arch_version:4;
+        uint32_t processor_family:4;
+        uint32_t load_pc_first:1;
+        uint32_t reserved0:1;
+        uint32_t supports_32bit_thumb_instr:1;
+        uint32_t support_for_security_extensions:1;
+        uint32_t branch_packet_encoding_implemented:1;
+        uint32_t reserved1:3;
+        uint32_t implementer_code:4;
+        };
+        uint32_t value;
+    };
+}id_register_t;
+_Static_assert(sizeof(id_register_t) == 4U, "id_register_t size incorrect");
 
 #endif /* _ARM_ETM_V3_H_ */
