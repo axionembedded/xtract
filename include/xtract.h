@@ -30,6 +30,6 @@ SOFTWARE.
 
 #include "arm_etm.h"
 
-bool xtract_etm_init(uint32_t etm_base_addr);
+bool xtract_etm_init(uint32_t etm_base_addr) __attribute__((warn_unused_result));
 
 #endif /* _XTRACT_H_ */
