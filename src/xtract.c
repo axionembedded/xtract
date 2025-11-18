@@ -35,13 +35,14 @@ bool xtract_etm_init(uint32_t etm_base_addr)
 
     etm_base_address = etm_base_addr;
 
-    ccr = *((volatile uint32_t *)(etm_base_address + ETMv3_CCR));
+    ccr = *((volatile uint32_t *)(etm_base_address + ETM_CCR));
 
-    if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U){
+    if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U)
+    {
         return false;
     }
 
-    id.value = *((volatile uint32_t *)(etm_base_addr + ETMv3_IDR));
+    id.value = *((volatile uint32_t *)(etm_base_addr + ETM_IDR));
 
     return (id.etm_major_arch_version == ETM_MAJOR_ARCH_VERSION_3);
 }
