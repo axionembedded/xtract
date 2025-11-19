@@ -24,7 +24,7 @@ SOFTWARE.
 
 #include "xtract.h"
 
-#define ETM_ID_REGISTER_PRESENT_MASK (1U << 31)
+#define ETM_ID_REGISTER_PRESENT_MASK (1UL << 31)
 
 static uint32_t etm_base_address = 0;
 
