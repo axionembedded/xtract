@@ -23,16 +23,17 @@ SOFTWARE.
 */
 
 #include "xtract.h"
+#include "arm_etm.h"
 
 #define ETM_ID_REGISTER_PRESENT_MASK (1UL << 31)
 
-static uint32_t etm_base_address = 0;
+static uint32_t etm_base_address;
+static id_register_t id;
 
 bool xtract_etm_init(uint32_t etm_base_addr)
 {
 	uint32_t cr;
     uint32_t ccr;
-    id_register_t id;
 
     etm_base_address = etm_base_addr;
 
@@ -51,4 +52,14 @@ bool xtract_etm_init(uint32_t etm_base_addr)
     id.value = *((volatile uint32_t *)(etm_base_addr + ETM_IDR));
 
     return (id.etm_major_arch_version == ETM_MAJOR_ARCH_VERSION_3);
+}
+
+uint8_t xtract_etm_get_major_version(void)
+{
+    return id.etm_major_arch_version;
+}
+
+uint8_t xtract_etm_get_minor_version(void)
+{
+    return id.etm_minor_arch_version;
 }

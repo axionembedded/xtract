@@ -28,8 +28,8 @@ SOFTWARE.
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "arm_etm.h"
-
 bool xtract_etm_init(uint32_t etm_base_addr) __attribute__((warn_unused_result));
+uint8_t xtract_etm_get_major_version(void) __attribute__((warn_unused_result));
+uint8_t xtract_etm_get_minor_version(void) __attribute__((warn_unused_result));
 
 #endif /* _XTRACT_H_ */
