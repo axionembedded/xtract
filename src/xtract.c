@@ -37,6 +37,7 @@ bool xtract_etm_init(uint32_t etm_base_addr, uint32_t etb_base_addr)
 {
 	uint32_t cr;
     uint32_t ccr;
+    uint32_t rdp;
     uint32_t sts;
 
     etm_base_address = etm_base_addr;
@@ -54,10 +55,11 @@ bool xtract_etm_init(uint32_t etm_base_addr, uint32_t etb_base_addr)
         return false;
     }
 
+    rdp = *((volatile uint32_t *)(etb_base_address + ETB_RDP));
+    (void)rdp;
+
     sts = *((volatile uint32_t *)(etb_base_address + ETB_STS));
-    if ((sts & ETB_STS_EMPTY_MASK) == ETB_STS_EMPTY_MASK)
-    {
-    }
+    (void)sts;
 
     id.value = *((volatile uint32_t *)(etm_base_addr + ETM_IDR));
 

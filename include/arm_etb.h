@@ -27,6 +27,12 @@ SOFTWARE.
 
 #include <stdint.h>
 
+#define ETB_RDP                 (0x004U)   /* RAM Depth Register */
 #define ETB_STS                 (0x00CU)   /* Status Register */
+#define ETB_RRD                 (0x010U)   /* RAM Read Data Register */
+#define ETB_RRP                 (0x014U)   /* RAM Read Pointer Register */
+#define ETB_RWP                 (0x018U)   /* RAM Write Pointer Register */
+#define ETB_TRG                 (0x01CU)   /* Trigger Count Register */
+#define ETB_CTL                 (0x020U)   /* Control Register */
 
 #endif /* _ARM_ETB_H_ */
