@@ -20,6 +20,7 @@
 #include "xtract.h"
 
 #define ETM_BASE_ADDR (0xE0041000UL)
+#define ETB_BASE_ADDR (0xE0051000UL)
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
 	#warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -27,7 +28,7 @@
 
 int main(void)
 {
-	const bool etmInit = xtract_etm_init(ETM_BASE_ADDR);
+	const bool etmInit = xtract_etm_init(ETM_BASE_ADDR, ETB_BASE_ADDR);
 	if (!etmInit)
 	{
 		// future error logging

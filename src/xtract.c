@@ -24,18 +24,23 @@ SOFTWARE.
 
 #include "xtract.h"
 #include "arm_etm.h"
+#include "arm_etb.h"
 
 #define ETM_ID_REGISTER_PRESENT_MASK (1UL << 31)
+#define ETB_STS_EMPTY_MASK           (1UL << 3)
 
 static uint32_t etm_base_address;
+static uint32_t etb_base_address;
 static id_register_t id;
 
-bool xtract_etm_init(uint32_t etm_base_addr)
+bool xtract_etm_init(uint32_t etm_base_addr, uint32_t etb_base_addr)
 {
 	uint32_t cr;
     uint32_t ccr;
+    uint32_t sts;
 
     etm_base_address = etm_base_addr;
+    etb_base_address = etb_base_addr;
 
     cr = *((volatile uint32_t *)(etm_base_address + ETM_CR));
     if (cr == 0)
@@ -47,6 +52,11 @@ bool xtract_etm_init(uint32_t etm_base_addr)
     if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U)
     {
         return false;
+    }
+
+    sts = *((volatile uint32_t *)(etb_base_address + ETB_STS));
+    if ((sts & ETB_STS_EMPTY_MASK) == ETB_STS_EMPTY_MASK)
+    {
     }
 
     id.value = *((volatile uint32_t *)(etm_base_addr + ETM_IDR));

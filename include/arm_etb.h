@@ -22,14 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef _XTRACT_H_
-#define _XTRACT_H_
+#ifndef _ARM_ETB_H_
+#define _ARM_ETB_H_
 
 #include <stdint.h>
-#include <stdbool.h>
 
-bool xtract_etm_init(uint32_t etm_base_addr, uint32_t etb_base_addr) __attribute__((warn_unused_result));
-uint8_t xtract_etm_get_major_version(void) __attribute__((warn_unused_result));
-uint8_t xtract_etm_get_minor_version(void) __attribute__((warn_unused_result));
+#define ETB_STS                 (0x00CU)   /* Status Register */
 
-#endif /* _XTRACT_H_ */
+#endif /* _ARM_ETB_H_ */
