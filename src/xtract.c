@@ -32,9 +32,16 @@ static id_register_t id;
 
 bool xtract_etm_init(uint32_t etm_base_addr)
 {
+	uint32_t cr;
     uint32_t ccr;
 
     etm_base_address = etm_base_addr;
+
+    cr = *((volatile uint32_t *)(etm_base_address + ETM_CR));
+    if (cr == 0)
+    {
+    	return false;
+    }
 
     ccr = *((volatile uint32_t *)(etm_base_address + ETM_CCR));
     if ((ccr & ETM_ID_REGISTER_PRESENT_MASK) == 0U)
