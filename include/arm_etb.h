@@ -27,6 +27,9 @@ SOFTWARE.
 
 #include <stdint.h>
 
+#define ETB_STS_EMPTY_MASK                (1UL << 3)
+#define ETB_CTL_ENABLE_TRACE_CAPTURE_MASK (1UL << 0)
+
 #define ETB_RDP                 (0x004U)   /* RAM Depth Register */
 #define ETB_STS                 (0x00CU)   /* Status Register */
 #define ETB_RRD                 (0x010U)   /* RAM Read Data Register */

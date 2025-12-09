@@ -28,6 +28,7 @@ SOFTWARE.
 #include <stdint.h>
 
 #define ETM_MAJOR_ARCH_VERSION_3 0x2U
+#define ETM_ID_REGISTER_PRESENT_MASK (1UL << 31)
 
 /* ETM Register Offsets (from the ETM base address) */
 #define ETM_CR                 (0x000U)   /* Control Register */
