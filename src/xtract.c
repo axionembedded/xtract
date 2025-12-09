@@ -26,9 +26,6 @@ SOFTWARE.
 #include "arm_etm.h"
 #include "arm_etb.h"
 
-#define ETM_ID_REGISTER_PRESENT_MASK (1UL << 31)
-#define ETB_STS_EMPTY_MASK           (1UL << 3)
-
 static uint32_t etm_base_address;
 static uint32_t etb_base_address;
 static id_register_t id;
@@ -39,6 +36,7 @@ bool xtract_etm_init(uint32_t etm_base_addr, uint32_t etb_base_addr)
     uint32_t ccr;
     uint32_t rdp;
     uint32_t sts;
+    uint32_t ctl;
 
     etm_base_address = etm_base_addr;
     etb_base_address = etb_base_addr;
@@ -60,6 +58,10 @@ bool xtract_etm_init(uint32_t etm_base_addr, uint32_t etb_base_addr)
 
     sts = *((volatile uint32_t *)(etb_base_address + ETB_STS));
     (void)sts;
+
+    *((volatile uint32_t *)(etb_base_address + ETB_CTL)) |= ETB_CTL_ENABLE_TRACE_CAPTURE_MASK;
+    ctl = *((volatile uint32_t *)(etb_base_address + ETB_CTL));
+    (void)ctl;
 
     id.value = *((volatile uint32_t *)(etm_base_addr + ETM_IDR));
 
